@@ -1,14 +1,14 @@
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { Section } from './App.styled';
+import { Section, Title } from './App.styled';
 
 export const App = () => {
   return (
     <Section>
-      <h2>Phonebook</h2>
+      <Title>Phonebook</Title>
       <ContactForm />
-      <h2>Contacts</h2>
+      <Title>Contacts</Title>
       <Filter />
       <ContactList />
     </Section>

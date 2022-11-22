@@ -1,9 +1,9 @@
 import { ContactItem } from './ContactItem/ContactItem';
-
+import { ListItem } from './ContactList.styled';
 export const ContactList = () => {
   return (
-    <ul>
+    <ListItem>
       <ContactItem />
-    </ul>
+    </ListItem>
   );
 };

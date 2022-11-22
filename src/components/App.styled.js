@@ -10,3 +10,6 @@ export const Section = styled.section`
   align-items: center;
   flex-direction: column;
 `;
+export const Title = styled.h2`
+  margin-bottom: 5px;
+`;
