@@ -5,7 +5,7 @@ import { deleteContacts } from 'Redux/ContactsSlice';
 import { getFilterText } from 'Redux/selectors';
 export const ContactItem = () => {
   const filterText = useSelector(getFilterText);
-  console.log(filterText);
+
   const contacts = useSelector(getContacts);
   const visibleContacts = contacts.filter(({ name }) =>
     name.toLowerCase().includes(filterText)
