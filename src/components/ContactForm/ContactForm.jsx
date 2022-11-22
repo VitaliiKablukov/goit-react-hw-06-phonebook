@@ -1,33 +1,35 @@
-import PropTypes from 'prop-types';
 import { Label, Input, Form, Button } from './ContactForm.styled';
-import { useState } from 'react';
-export const ContactForm = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [number, setNamber] = useState('');
-  const submitForm = e => {
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'Redux/selectors';
+import { addContacts } from 'Redux/ContactsSlice';
+
+export const ContactForm = () => {
+  const contacts = useSelector(getContacts);
+
+  const dispatch = useDispatch();
+
+  const onSubmitForm = e => {
     e.preventDefault();
-    onSubmit(name, number);
-    e.target.reset();
-  };
-  const changeNameNumber = e => {
-    const changeText = e.target.value;
-    const inputName = e.target.name;
-    switch (inputName) {
-      case 'name':
-        setName(() => changeText);
-        break;
-      case 'number':
-        setNamber(() => changeText);
-        break;
-      default:
-        break;
+    const form = e.target;
+
+    const name = form.elements.name.value;
+
+    const number = form.elements.number.value;
+
+    if (contacts.some(el => el.name === name.toLowerCase())) {
+      form.reset();
+      return alert(`${name} is already contacts`);
+    } else {
+      dispatch(addContacts(name, number));
+      form.reset();
+      return;
     }
   };
+
   return (
-    <Form onSubmit={submitForm}>
+    <Form onSubmit={onSubmitForm}>
       <Label htmlFor="name">Name:</Label>
       <Input
-        onChange={changeNameNumber}
         type="text"
         name="name"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -36,7 +38,6 @@ export const ContactForm = ({ onSubmit }) => {
       />
       <Label htmlFor="number">Number:</Label>
       <Input
-        onChange={changeNameNumber}
         type="tel"
         name="number"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -46,8 +47,4 @@ export const ContactForm = ({ onSubmit }) => {
       <Button type="submit">Add contact</Button>
     </Form>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };

@@ -1,8 +1,10 @@
 import { Fragment } from 'react';
-import PropTypes from 'prop-types';
-export const Filter = ({ filterInputText }) => {
+import { useDispatch } from 'react-redux';
+import { filterContacts } from 'Redux/FilterContacts';
+export const Filter = () => {
+  const dispatch = useDispatch();
   const filterText = e => {
-    filterInputText(e.target.value);
+    dispatch(filterContacts(e.target.value));
   };
 
   return (
@@ -11,7 +13,4 @@ export const Filter = ({ filterInputText }) => {
       <input type="text" name="filter" onChange={filterText} />
     </Fragment>
   );
-};
-Filter.propTypes = {
-  filterInputText: PropTypes.func.isRequired,
 };

@@ -1,16 +1,9 @@
 import { ContactItem } from './ContactItem/ContactItem';
-import PropTypes from 'prop-types';
-export const ContactList = ({ visbleContacts, deletecontact }) => {
+
+export const ContactList = () => {
   return (
     <ul>
-      <ContactItem
-        visbleContacts={visbleContacts}
-        deletecontact={deletecontact}
-      />
+      <ContactItem />
     </ul>
   );
-};
-ContactList.propTypes = {
-  visbleContacts: PropTypes.array.isRequired,
-  deletecontact: PropTypes.func.isRequired,
 };
