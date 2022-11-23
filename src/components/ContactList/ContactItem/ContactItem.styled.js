@@ -10,6 +10,3 @@ export const Button = styled.button`
     scale: 1.1;
   }
 `;
-export const Text = styled.p`
-  margin: 0 auto;
-`;
